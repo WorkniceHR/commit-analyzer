@@ -1,3 +1,35 @@
+> [!NOTE]
+> 
+> This is a fork of [semantic-release's
+> commit-analyzer](https://github.com/semantic-release/commit-analyzer) that has
+> been modified to include a `disableDefaultReleaseRules` option which can be
+> used like this:
+>
+> ```json
+> {
+>   "plugins": [
+>     [
+>       "@worknice/commit-analyzer",
+>       {
+>         "preset": "angular",
+>         "releaseRules": [
+>           { "type": "docs", "scope": "README", "release": "patch" },
+>           { "type": "refactor", "release": "patch" },
+>           { "type": "style", "release": "patch" }
+>         ],
+>         "disableDefaultReleaseRules": true,
+>       }
+>     ]
+>   ]
+> }
+> ```
+> 
+> This is heavily inspired by this pull-request and will not be needed once it is merged:
+> 
+> https://github.com/semantic-release/commit-analyzer/pull/211
+>
+> You can run `pnpm add -D WorkniceHR/commit-analyzer#master` to install this package.
+
 # **commit-analyzer**
 
 [**semantic-release**](https://github.com/semantic-release/semantic-release) plugin to analyze commits with [conventional-changelog](https://github.com/conventional-changelog/conventional-changelog)

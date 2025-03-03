@@ -19,6 +19,7 @@ const debug = debugFactory("semantic-release:commit-analyzer");
  * @param {String} pluginConfig.config Requireable npm package with a custom conventional-changelog preset
  * @param {String|Array} pluginConfig.releaseRules A `String` to load an external module or an `Array` of rules.
  * @param {Boolean} pluginConfig.disableDefaultReleaseRules A `Boolean` that will prevent the default release rules to be used if a rule is not matched.
+ * @param {Boolean} pluginConfig.defaultToPatchRelease A `Boolean` to return a patch release when no release type is determined.
  * @param {Object} pluginConfig.parserOpts Additional `conventional-changelog-parser` options that will overwrite ones loaded by `preset` or `config`.
  * @param {Object} context The semantic-release context.
  * @param {Array<Object>} context.commits The commits to analyze.
@@ -85,6 +86,11 @@ export async function analyzeCommits(pluginConfig, context) {
   }
 
   logger.log("Analysis of %s commits complete: %s release", commits.length, releaseType || "no");
+
+  if (releaseType === null && pluginConfig.defaultToPatchRelease === true) {
+    logger.log("No release type determined, defaulting to patch release");
+    return "patch";
+  }
 
   return releaseType;
 }

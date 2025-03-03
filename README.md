@@ -2,8 +2,8 @@
 > 
 > This is a fork of [semantic-release's
 > commit-analyzer](https://github.com/semantic-release/commit-analyzer) that has
-> been modified to include a `disableDefaultReleaseRules` option which can be
-> used like this:
+> been modified to include `disableDefaultReleaseRules` and
+> `defaultToPatchRelease` options which can be used like this:
 >
 > ```json
 > {
@@ -18,13 +18,14 @@
 >           { "type": "style", "release": "patch" }
 >         ],
 >         "disableDefaultReleaseRules": true,
+>         "defaultToPatchRelease": true,
 >       }
 >     ]
 >   ]
 > }
 > ```
 > 
-> This is heavily inspired by this pull-request and will not be needed once it is merged:
+> This is heavily inspired by this pull-request:
 > 
 > https://github.com/semantic-release/commit-analyzer/pull/211
 >
